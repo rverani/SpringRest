@@ -3,16 +3,23 @@ package com.br.SpringRest.Controller;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.br.SpringRest.Domain.Model.*;
 
 @RestController
 public class ClienteController {
-
+	
+	private final AtomicLong counter = new AtomicLong();
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/clientes")
-	public List<Cliente> Listar() {
+	public List<Cliente> Listar(@RequestParam(required = false, defaultValue = "")String name) {
 			
 		var cliente1 = new Cliente();
 		cliente1.setId(1L);
